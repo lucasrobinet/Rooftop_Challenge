@@ -18,7 +18,7 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
     skip: (page - 1) * limit,
     take: limit
     });
-    res.status(200).json({total, stores} )
+    res.status(200).json({total, stores})
 };
 
 
