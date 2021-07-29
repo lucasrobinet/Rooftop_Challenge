@@ -35,3 +35,14 @@ export const newStore = async (req:Request, res:Response): Promise<Response> => 
 
 
 
+ export const deleteStore = async (req:Request, res:Response): Promise<Response> => {
+
+    const store = await getRepository(Stores).findOne(req.params.id);
+
+    if(!store)  return res.status(404).send("Invalid ID");
+
+    await getRepository(Stores).delete(req.params.id);
+    return res.status(200).send("Store deleted!");
+
+}
+

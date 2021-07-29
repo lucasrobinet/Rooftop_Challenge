@@ -12,10 +12,7 @@ router.delete("/coupons/:id", coupons_controllers_1.deleteCoupon);
 // recurso Stores
 router.get("/stores", stores_controllers_1.getStores);
 router.post("/stores", stores_controllers_1.newStore);
-/*
-router.delete("/stores", );
-
-
+router.delete("/stores/:id", stores_controllers_1.deleteStore);
 // recurso Stats
-router.get("/stats", );*/
+// router.get("/stats", );*/
 exports.default = router;

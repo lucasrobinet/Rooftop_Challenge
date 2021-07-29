@@ -4,7 +4,7 @@ const router = Router();
 import {getCoupons, createCoupon, asignCoupon, deleteCoupon} 
 from "../controllers/coupons.controllers";
 
-import { getStores, newStore } from "../controllers/stores.controllers"
+import { getStores, newStore, deleteStore } from "../controllers/stores.controllers"
 
 // recurso Coupons
 router.get("/coupons", getCoupons);
@@ -21,12 +21,11 @@ router.get("/stores", getStores);
 
 router.post("/stores", newStore );
 
-/*
-router.delete("/stores", );
+router.delete("/stores/:id", deleteStore);
 
 
 // recurso Stats
-router.get("/stats", );*/
+// router.get("/stats", );*/
 
 
 export default router;

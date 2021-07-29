@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.newStore = exports.getStores = void 0;
+exports.deleteStore = exports.newStore = exports.getStores = void 0;
 var typeorm_1 = require("typeorm");
 var Stores_1 = require("../entity/Stores");
 var typeorm_2 = require("typeorm");
@@ -85,3 +85,20 @@ var newStore = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
     });
 }); };
 exports.newStore = newStore;
+var deleteStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var store;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).findOne(req.params.id)];
+            case 1:
+                store = _a.sent();
+                if (!store)
+                    return [2 /*return*/, res.status(404).send("Invalid ID")];
+                return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).delete(req.params.id)];
+            case 2:
+                _a.sent();
+                return [2 /*return*/, res.status(200).send("Store deleted!")];
+        }
+    });
+}); };
+exports.deleteStore = deleteStore;
