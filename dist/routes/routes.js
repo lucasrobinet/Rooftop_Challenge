@@ -7,9 +7,8 @@ var stores_controllers_1 = require("../controllers/stores.controllers");
 // recurso Cupones
 router.get("/coupons", coupons_controllers_1.getCoupons);
 router.post("/coupons", coupons_controllers_1.createCoupon);
-//router.patch("/coupons", asignCoupon);
-/*
-router.delete("/coupons/:code", ); */
+router.patch("/coupons", coupons_controllers_1.asignCoupon);
+router.delete("/coupons/:id", coupons_controllers_1.deleteCoupon);
 router.get("/stores", stores_controllers_1.getStores);
 /*router.post("/stores", );
 

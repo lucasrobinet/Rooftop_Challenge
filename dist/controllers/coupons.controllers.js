@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.asignCoupon = exports.createCoupon = exports.getCoupons = void 0;
+exports.deleteCoupon = exports.asignCoupon = exports.createCoupon = exports.getCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
 var joi_1 = __importDefault(require("joi"));
@@ -124,3 +124,27 @@ var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 exports.asignCoupon = asignCoupon;
+var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var coupon;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne(req.params.id)];
+            case 1:
+                coupon = _a.sent();
+                if (!!coupon) return [3 /*break*/, 2];
+                res.status(404).send("Invalid ID");
+                return [3 /*break*/, 5];
+            case 2:
+                if (!(coupon === null || coupon === void 0 ? void 0 : coupon.customer_email)) return [3 /*break*/, 3];
+                res.status(404).send("Coupon already assigned. Cannot be deleted");
+                return [3 /*break*/, 5];
+            case 3: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).delete(req.params.id)];
+            case 4:
+                _a.sent();
+                res.status(201).send("Coupon deleted!");
+                _a.label = 5;
+            case 5: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteCoupon = deleteCoupon;

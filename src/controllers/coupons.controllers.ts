@@ -53,3 +53,16 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
  }
 
     
+ export const deleteCoupon = async (req:Request, res:Response): Promise<void> => {
+
+    const coupon = await getRepository(Coupons).findOne(req.params.id);
+    if(!coupon) {
+        res.status(404).send("Invalid ID")
+    }
+    else if(coupon?.customer_email ) {
+        res.status(404).send("Coupon already assigned. Cannot be deleted")
+    } else {
+        await getRepository(Coupons).delete(req.params.id);
+        res.status(201).send("Coupon deleted!")
+    }
+ }

@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 
-import {getCoupons, createCoupon} 
+import {getCoupons, createCoupon, asignCoupon, deleteCoupon} 
 from "../controllers/coupons.controllers";
 
 import { getStores,  } from "../controllers/stores.controllers"
@@ -11,10 +11,10 @@ router.get("/coupons", getCoupons);
 
 router.post("/coupons", createCoupon);
 
-//router.patch("/coupons", asignCoupon);
+router.patch("/coupons", asignCoupon);
 
-/*
-router.delete("/coupons/:code", ); */
+
+router.delete("/coupons/:id", deleteCoupon);
 
 
 
