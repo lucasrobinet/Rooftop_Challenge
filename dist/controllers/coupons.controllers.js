@@ -36,11 +36,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCoupons = void 0;
+exports.createCoupon = exports.getCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
 var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var code, email, cupon;
+    var code, email, coupon;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -48,8 +48,8 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 email = req.query.email;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).find({ code: code, customer_email: email })];
             case 1:
-                cupon = _a.sent();
-                if (cupon.length > 0) {
+                coupon = _a.sent();
+                if (coupon.length > 0) {
                     res.status(200).send("Email not available");
                 }
                 else {
@@ -60,10 +60,26 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.getCoupons = getCoupons;
-/*
-    const page:number = parseInt(req.query.page as any) || 1;
-    const limit = 10;
-    const cupon = await getRepository(Coupons).find();
-    skip: (page - 1) * limit,
-    take: limit
-        */ 
+var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var codeCoupon, newCoupon, coupon;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                codeCoupon = req.body.code;
+                if (!(codeCoupon.length != 8)) return [3 /*break*/, 1];
+                res.status(422).send("Invalid code");
+                return [3 /*break*/, 3];
+            case 1:
+                newCoupon = new Coupons_1.Coupons();
+                newCoupon.code = codeCoupon;
+                newCoupon.expires_at = req.body.expires_at;
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).save(newCoupon)];
+            case 2:
+                coupon = _a.sent();
+                res.status(201).send("Created coupon successfully!");
+                _a.label = 3;
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+exports.createCoupon = createCoupon;
