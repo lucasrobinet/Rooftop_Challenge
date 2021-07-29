@@ -131,19 +131,14 @@ var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
             case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne(req.params.id)];
             case 1:
                 coupon = _a.sent();
-                if (!!coupon) return [3 /*break*/, 2];
-                res.status(404).send("Invalid ID");
-                return [3 /*break*/, 5];
+                if (!coupon)
+                    return [2 /*return*/, res.status(404).send("Invalid ID")];
+                if (coupon === null || coupon === void 0 ? void 0 : coupon.customer_email)
+                    return [2 /*return*/, res.status(404).send("Coupon already assigned. Cannot be deleted")];
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).delete(req.params.id)];
             case 2:
-                if (!(coupon === null || coupon === void 0 ? void 0 : coupon.customer_email)) return [3 /*break*/, 3];
-                res.status(404).send("Coupon already assigned. Cannot be deleted");
-                return [3 /*break*/, 5];
-            case 3: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).delete(req.params.id)];
-            case 4:
                 _a.sent();
-                res.status(201).send("Coupon deleted!");
-                _a.label = 5;
-            case 5: return [2 /*return*/];
+                return [2 /*return*/, res.status(201).send("Coupon deleted!")];
         }
     });
 }); };
