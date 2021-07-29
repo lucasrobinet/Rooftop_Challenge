@@ -4,24 +4,24 @@ const router = Router();
 import {getCoupons, createCoupon, asignCoupon, deleteCoupon} 
 from "../controllers/coupons.controllers";
 
-import { getStores,  } from "../controllers/stores.controllers"
+import { getStores, newStore } from "../controllers/stores.controllers"
 
-// recurso Cupones
+// recurso Coupons
 router.get("/coupons", getCoupons);
 
 router.post("/coupons", createCoupon);
 
 router.patch("/coupons", asignCoupon);
 
-
 router.delete("/coupons/:id", deleteCoupon);
 
 
-
+// recurso Stores
 router.get("/stores", getStores);
 
-/*router.post("/stores", );
+router.post("/stores", newStore );
 
+/*
 router.delete("/stores", );
 
 

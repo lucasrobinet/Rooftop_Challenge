@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStores = void 0;
+exports.newStore = exports.getStores = void 0;
 var typeorm_1 = require("typeorm");
 var Stores_1 = require("../entity/Stores");
 var typeorm_2 = require("typeorm");
@@ -68,3 +68,20 @@ var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, f
     });
 }); };
 exports.getStores = getStores;
+var newStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var name, address;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                name = req.body.name;
+                address = req.body.address;
+                if (name.length <= 0 || address.length <= 0)
+                    return [2 /*return*/, res.status(404).send("Invalid Name or Addres")];
+                return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).save(req.body)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/, res.status(201).send("Store created successfully!")];
+        }
+    });
+}); };
+exports.newStore = newStore;

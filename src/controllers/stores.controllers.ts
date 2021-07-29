@@ -22,5 +22,16 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
 };
 
 
+export const newStore = async (req:Request, res:Response): Promise<Response> => {
+
+    const name = req.body.name;
+    const address = req.body.address;
+    if (name.length <= 0 || address.length <= 0) return res.status(404).send("Invalid Name or Addres");
+
+    await getRepository(Stores).save(req.body)
+    return res.status(201).send("Store created successfully!")
+
+ }
+
 
 
