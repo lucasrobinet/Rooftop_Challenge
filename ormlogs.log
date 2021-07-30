@@ -1,0 +1,34 @@
+[2021-07-30T17:24:56.757Z][QUERY]: SELECT COUNT(1) AS "cnt" FROM "coupons" "coupon" WHERE "coupon"."code" IS NOT NULL
+[2021-07-30T17:24:56.797Z][QUERY]: SELECT COUNT(1) AS "cnt" FROM "coupons" "coupon" WHERE "coupon"."code" IS NOT NULL AND "coupon"."customer_email" IS NOT NULL
+[2021-07-30T17:24:56.799Z][QUERY]: SELECT COUNT(1) AS "cnt" FROM "coupons" "coupon" WHERE "coupon"."code" IS NOT NULL AND "coupon"."customer_email" IS NULL
+[2021-07-30T17:26:28.053Z][QUERY]: START TRANSACTION
+[2021-07-30T17:26:29.027Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGH","2022-10-25 21:43"]
+[2021-07-30T17:26:29.455Z][QUERY]: COMMIT
+[2021-07-30T17:29:56.610Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."customer_email" = $1 -- PARAMETERS: ["lucastest@gmail.com"]
+[2021-07-30T17:29:56.618Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."code" = $1 LIMIT 1 -- PARAMETERS: ["ABCDEFGH"]
+[2021-07-30T17:29:56.627Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."id" IN ($1) -- PARAMETERS: ["133"]
+[2021-07-30T17:29:56.630Z][QUERY]: START TRANSACTION
+[2021-07-30T17:29:56.632Z][QUERY]: UPDATE "coupons" SET "expires_at" = $2, "customer_email" = $3 WHERE "id" IN ($1) -- PARAMETERS: ["133","2022-10-26T00:43:00.000Z","lucastest@gmail.com"]
+[2021-07-30T17:29:56.639Z][QUERY]: COMMIT
+[2021-07-30T17:33:28.825Z][QUERY]: START TRANSACTION
+[2021-07-30T17:33:28.856Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGG","2021-10-25 21:43"]
+[2021-07-30T17:33:28.857Z][QUERY]: COMMIT
+[2021-07-30T17:33:37.451Z][QUERY]: START TRANSACTION
+[2021-07-30T17:33:37.452Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGG","2021-10-25 21:43"]
+[2021-07-30T17:33:37.496Z][QUERY]: COMMIT
+[2021-07-30T17:33:40.047Z][QUERY]: START TRANSACTION
+[2021-07-30T17:33:40.048Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGG","2021-10-25 21:43"]
+[2021-07-30T17:33:40.049Z][QUERY]: COMMIT
+[2021-07-30T17:33:41.584Z][QUERY]: START TRANSACTION
+[2021-07-30T17:33:41.585Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGG","2021-10-25 21:43"]
+[2021-07-30T17:33:41.586Z][QUERY]: COMMIT
+[2021-07-30T17:37:53.759Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."code" = $1 LIMIT 1 -- PARAMETERS: ["ABCDEFGG"]
+[2021-07-30T17:37:53.766Z][QUERY]: START TRANSACTION
+[2021-07-30T17:37:53.769Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABCDEFGG","2021-10-25 21:43"]
+[2021-07-30T17:37:53.772Z][QUERY]: COMMIT
+[2021-07-30T17:38:07.133Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."code" = $1 LIMIT 1 -- PARAMETERS: ["ABCDEFGG"]
+[2021-07-30T17:38:34.476Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."code" = $1 LIMIT 1 -- PARAMETERS: ["ABABABAB"]
+[2021-07-30T17:38:34.693Z][QUERY]: START TRANSACTION
+[2021-07-30T17:38:34.697Z][QUERY]: INSERT INTO "coupons"("code", "expires_at", "assigned_at", "customer_email") VALUES ($1, $2, DEFAULT, DEFAULT) RETURNING "id" -- PARAMETERS: ["ABABABAB","2021-10-25 21:43"]
+[2021-07-30T17:38:34.699Z][QUERY]: COMMIT
+[2021-07-30T17:38:37.998Z][QUERY]: SELECT "Coupons"."id" AS "Coupons_id", "Coupons"."code" AS "Coupons_code", "Coupons"."expires_at" AS "Coupons_expires_at", "Coupons"."assigned_at" AS "Coupons_assigned_at", "Coupons"."customer_email" AS "Coupons_customer_email" FROM "coupons" "Coupons" WHERE "Coupons"."code" = $1 LIMIT 1 -- PARAMETERS: ["ABABABAB"]

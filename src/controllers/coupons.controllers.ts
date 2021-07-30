@@ -19,8 +19,9 @@ export const getCoupons = async (req:Request, res: Response): Promise<void> => {
 export const createCoupon = async (req:Request, res:Response): Promise<void> => {
 
     let codeCoupon = req.body.code;
-    if (codeCoupon.length != 8) {
-        res.status(422).send("Invalid code")
+    const actualCoupon = await getRepository(Coupons).findOne({code: codeCoupon})
+    if (codeCoupon.length != 8 || actualCoupon) {
+        res.status(422).send("Invalid coupon or coupon already created")
     } else {
         const newCoupon = new Coupons()
         newCoupon.code =  codeCoupon

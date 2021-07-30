@@ -6,6 +6,7 @@
     "password": "robinjood1",
     "database": "rooftopChallenge",
     "entities": ["dist/entity/**/*.js"],
-    "logging": false,
+    "logging": true,
+    "logger": "file",
     "synchronize": false
  }

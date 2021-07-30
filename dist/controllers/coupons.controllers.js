@@ -65,24 +65,27 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
 }); };
 exports.getCoupons = getCoupons;
 var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var codeCoupon, newCoupon, coupon;
+    var codeCoupon, actualCoupon, newCoupon, coupon;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 codeCoupon = req.body.code;
-                if (!(codeCoupon.length != 8)) return [3 /*break*/, 1];
-                res.status(422).send("Invalid code");
-                return [3 /*break*/, 3];
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).findOne({ code: codeCoupon })];
             case 1:
+                actualCoupon = _a.sent();
+                if (!(codeCoupon.length != 8 || actualCoupon)) return [3 /*break*/, 2];
+                res.status(422).send("Invalid coupon or coupon already created");
+                return [3 /*break*/, 4];
+            case 2:
                 newCoupon = new Coupons_1.Coupons();
                 newCoupon.code = codeCoupon;
                 newCoupon.expires_at = req.body.expires_at;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).save(newCoupon)];
-            case 2:
+            case 3:
                 coupon = _a.sent();
                 res.status(201).send("Created coupon successfully!");
-                _a.label = 3;
-            case 3: return [2 /*return*/];
+                _a.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); };
