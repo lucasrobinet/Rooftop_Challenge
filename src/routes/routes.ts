@@ -1,10 +1,11 @@
 import { Router } from "express";
 const router = Router();
 
-import {getCoupons, createCoupon, asignCoupon, deleteCoupon} 
-from "../controllers/coupons.controllers";
+import {getCoupons, createCoupon, asignCoupon, deleteCoupon} from "../controllers/coupons.controllers";
 
 import { getStores, newStore, deleteStore } from "../controllers/stores.controllers"
+
+import {totalCoupons, } from "../controllers/stats.controllers"
 
 // recurso Coupons
 router.get("/coupons", getCoupons);
@@ -25,7 +26,7 @@ router.delete("/stores/:id", deleteStore);
 
 
 // recurso Stats
-// router.get("/stats", );*/
+router.get("/stats", totalCoupons);
 
 
 export default router;

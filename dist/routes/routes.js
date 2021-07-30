@@ -4,6 +4,7 @@ var express_1 = require("express");
 var router = express_1.Router();
 var coupons_controllers_1 = require("../controllers/coupons.controllers");
 var stores_controllers_1 = require("../controllers/stores.controllers");
+var stats_controllers_1 = require("../controllers/stats.controllers");
 // recurso Coupons
 router.get("/coupons", coupons_controllers_1.getCoupons);
 router.post("/coupons", coupons_controllers_1.createCoupon);
@@ -14,5 +15,5 @@ router.get("/stores", stores_controllers_1.getStores);
 router.post("/stores", stores_controllers_1.newStore);
 router.delete("/stores/:id", stores_controllers_1.deleteStore);
 // recurso Stats
-// router.get("/stats", );*/
+router.get("/stats", stats_controllers_1.totalCoupons);
 exports.default = router;
