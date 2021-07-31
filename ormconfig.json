@@ -1,12 +1,11 @@
 {
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "robinjood1",
-    "database": "rooftopChallenge",
-    "entities": ["dist/entity/**/*.js"],
+    "type": "TYPEORM_CONNECTION",
+    "host": "TYPEORM_HOST",
+    "port": "TYPEORM_PORT",
+    "username": "TYPEORM_USERNAME",
+    "password": "TYPEORM_PASSWORD",
+    "database": "TYPEORM_DATABASE",
+    "entities": "TYPEORM_ENTITIES",
     "logging": true,
-    "logger": "file",
-    "synchronize": false
+    "synchronize": "TYPEORM_SYNCHRONIZE"
  }
