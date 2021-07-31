@@ -117,6 +117,7 @@ var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0,
             case 4:
                 if (!(coupon != null)) return [3 /*break*/, 6];
                 coupon.customer_email = email;
+                coupon.assigned_at = new Date();
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).save(coupon)];
             case 5:
                 _a.sent();
@@ -150,3 +151,6 @@ var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.deleteCoupon = deleteCoupon;
+/*         coupon.customer_email = email
+        await getRepository(Coupons).save(coupon)
+        res.status(201).send("Coupon asigned successfully!") */ 
