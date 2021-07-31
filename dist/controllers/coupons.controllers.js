@@ -43,6 +43,7 @@ exports.deleteCoupon = exports.asignCoupon = exports.createCoupon = exports.getC
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
 var joi_1 = __importDefault(require("joi"));
+// Show a coupon if are asigned to an email
 var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var code, email, coupon;
     return __generator(this, function (_a) {
@@ -64,6 +65,7 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
     });
 }); };
 exports.getCoupons = getCoupons;
+// Create a new coupon
 var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var codeCoupon, actualCoupon, newCoupon, coupon;
     return __generator(this, function (_a) {
@@ -90,6 +92,7 @@ var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.createCoupon = createCoupon;
+// Asign a coupon with an email
 var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var email, code, emailCoupon, coupon, validation;
     return __generator(this, function (_a) {
@@ -127,6 +130,7 @@ var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0,
     });
 }); };
 exports.asignCoupon = asignCoupon;
+// Delete a coupon by id
 var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var coupon;
     return __generator(this, function (_a) {

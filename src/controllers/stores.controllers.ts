@@ -3,6 +3,8 @@ import {Code, getRepository} from "typeorm"
 import {Stores} from '../entity/Stores'
 import {ILike} from "typeorm";
 
+
+// Show a list of 10 stores, and allow search by name
 export const getStores = async (req:Request, res: Response): Promise<void> => {  
 
     const name:string = (req.query.name as string);
@@ -22,6 +24,7 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
 };
 
 
+// Create a new store
 export const newStore = async (req:Request, res:Response): Promise<Response> => {
 
     const name = req.body.name;
@@ -34,7 +37,7 @@ export const newStore = async (req:Request, res:Response): Promise<Response> => 
  }
 
 
-
+// Delete a store
  export const deleteStore = async (req:Request, res:Response): Promise<Response> => {
 
     const store = await getRepository(Stores).findOne(req.params.id);

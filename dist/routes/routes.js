@@ -5,15 +5,15 @@ var router = express_1.Router();
 var coupons_controllers_1 = require("../controllers/coupons.controllers");
 var stores_controllers_1 = require("../controllers/stores.controllers");
 var stats_controllers_1 = require("../controllers/stats.controllers");
-// recurso Coupons
+// Coupons
 router.get("/coupons", coupons_controllers_1.getCoupons);
 router.post("/coupons", coupons_controllers_1.createCoupon);
 router.patch("/coupons", coupons_controllers_1.asignCoupon);
 router.delete("/coupons/:id", coupons_controllers_1.deleteCoupon);
-// recurso Stores
+// Stores
 router.get("/stores", stores_controllers_1.getStores);
 router.post("/stores", stores_controllers_1.newStore);
 router.delete("/stores/:id", stores_controllers_1.deleteStore);
-// recurso Stats
+// Stats
 router.get("/stats", stats_controllers_1.totalCoupons);
 exports.default = router;

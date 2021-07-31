@@ -4,6 +4,8 @@ import {Code, getRepository} from "typeorm"
 import {Coupons} from '../entity/Coupons'
 import Joi from 'joi';
 
+
+// Show a coupon if are asigned to an email
 export const getCoupons = async (req:Request, res: Response): Promise<void> => {
 
     const code:string = (req.query.code as string);
@@ -16,6 +18,8 @@ export const getCoupons = async (req:Request, res: Response): Promise<void> => {
     }
 };
 
+
+// Create a new coupon
 export const createCoupon = async (req:Request, res:Response): Promise<void> => {
 
     let codeCoupon = req.body.code;
@@ -32,6 +36,8 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
 
  }
 
+
+// Asign a coupon with an email
  export const asignCoupon = async (req:Request, res:Response): Promise<void> => {
 
     const email = req.body.customer_email;
@@ -53,7 +59,8 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
     }
  }
 
-    
+
+// Delete a coupon by id
  export const deleteCoupon = async (req:Request, res:Response): Promise<Response> => {
 
     const coupon = await getRepository(Coupons).findOne(req.params.id);

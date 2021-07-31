@@ -5,9 +5,10 @@ import {getCoupons, createCoupon, asignCoupon, deleteCoupon} from "../controller
 
 import { getStores, newStore, deleteStore } from "../controllers/stores.controllers"
 
-import {totalCoupons, } from "../controllers/stats.controllers"
+import {totalCoupons } from "../controllers/stats.controllers"
 
-// recurso Coupons
+
+// Coupons
 router.get("/coupons", getCoupons);
 
 router.post("/coupons", createCoupon);
@@ -17,7 +18,7 @@ router.patch("/coupons", asignCoupon);
 router.delete("/coupons/:id", deleteCoupon);
 
 
-// recurso Stores
+// Stores
 router.get("/stores", getStores);
 
 router.post("/stores", newStore );
@@ -25,7 +26,7 @@ router.post("/stores", newStore );
 router.delete("/stores/:id", deleteStore);
 
 
-// recurso Stats
+// Stats
 router.get("/stats", totalCoupons);
 
 

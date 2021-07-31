@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.totalCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
+// Show stats from coupons like, total coupons, coupons asigned, coupons that are not asigned, coupons created in a day and coupons asigned in a day
 var totalCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var result, count, _a, _b;
     return __generator(this, function (_c) {

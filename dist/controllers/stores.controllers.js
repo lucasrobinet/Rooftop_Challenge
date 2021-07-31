@@ -40,6 +40,7 @@ exports.deleteStore = exports.newStore = exports.getStores = void 0;
 var typeorm_1 = require("typeorm");
 var Stores_1 = require("../entity/Stores");
 var typeorm_2 = require("typeorm");
+// Show a list of 10 stores, and allow search by name
 var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var name, where, page, limit, total, stores;
     return __generator(this, function (_a) {
@@ -68,6 +69,7 @@ var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, f
     });
 }); };
 exports.getStores = getStores;
+// Create a new store
 var newStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var name, address;
     return __generator(this, function (_a) {
@@ -85,6 +87,7 @@ var newStore = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
     });
 }); };
 exports.newStore = newStore;
+// Delete a store
 var deleteStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var store;
     return __generator(this, function (_a) {
