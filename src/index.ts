@@ -1,6 +1,6 @@
+import "reflect-metadata";
 import * as dotenv from "dotenv";
 dotenv.config();
-import "reflect-metadata";
 
 
 
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(router); 
 
 createConnection().then(() => {
-    app.listen(3000);
-    console.log('Server on port', 3000);
+    app.listen(process.env.PORT);
+    console.log('Server on port', process.env.PORT);
 });
 

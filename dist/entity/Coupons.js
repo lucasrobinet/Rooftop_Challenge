@@ -27,8 +27,8 @@ var Coupons = /** @class */ (function () {
         __metadata("design:type", String)
     ], Coupons.prototype, "expires_at", void 0);
     __decorate([
-        typeorm_1.Column(),
-        __metadata("design:type", String)
+        typeorm_1.Column({ type: "time without time zone" }),
+        __metadata("design:type", Date)
     ], Coupons.prototype, "assigned_at", void 0);
     __decorate([
         typeorm_1.Column(),

@@ -22,9 +22,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
 var dotenv = __importStar(require("dotenv"));
 dotenv.config();
-require("reflect-metadata");
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var typeorm_1 = require("typeorm");
@@ -36,6 +36,6 @@ app.use(express_1.default.json());
 //routes
 app.use(routes_1.default);
 typeorm_1.createConnection().then(function () {
-    app.listen(3000);
-    console.log('Server on port', 3000);
+    app.listen(process.env.PORT);
+    console.log('Server on port', process.env.PORT);
 });

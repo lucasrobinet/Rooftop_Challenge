@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn,} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 export class Coupons {
@@ -12,8 +12,8 @@ export class Coupons {
     @Column()
     expires_at: string;
 
-    @Column()
-    assigned_at: string;
+    @Column({type: "time without time zone"})
+    assigned_at: Date;
 
     @Column()
     customer_email: string;

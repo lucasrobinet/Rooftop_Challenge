@@ -1,8 +1,9 @@
 import {Request, Response} from 'express'
 import { send } from 'process';
-import {Code, getRepository} from "typeorm"
+import {Code, createQueryBuilder, getRepository, Timestamp, getConnection} from "typeorm"
 import {Coupons} from '../entity/Coupons'
 import Joi from 'joi';
+import { networkInterfaces } from 'os';
 
 
 // Show a coupon if are asigned to an email
@@ -52,6 +53,7 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
         res.status(422).send("This email already has a coupon assigned")
     }  else if(coupon != null){
         coupon.customer_email = email
+        coupon.assigned_at = new Date()
         await getRepository(Coupons).save(coupon)
         res.status(201).send("Coupon asigned successfully!")
     } else {
@@ -73,3 +75,7 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
     return res.status(201).send("Coupon deleted!");
 
 }
+
+/*         coupon.customer_email = email
+        await getRepository(Coupons).save(coupon)
+        res.status(201).send("Coupon asigned successfully!") */
