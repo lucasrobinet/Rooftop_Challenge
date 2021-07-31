@@ -92,7 +92,7 @@ var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.createCoupon = createCoupon;
-// Asign a coupon with an email
+// Asign a coupon to an email
 var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var email, code, emailCoupon, coupon, validation;
     return __generator(this, function (_a) {

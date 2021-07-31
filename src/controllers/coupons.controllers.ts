@@ -38,7 +38,7 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
  }
 
 
-// Asign a coupon with an email
+// Asign a coupon to an email
  export const asignCoupon = async (req:Request, res:Response): Promise<void> => {
 
     const email = req.body.customer_email;
