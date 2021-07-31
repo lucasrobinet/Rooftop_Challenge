@@ -39,11 +39,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.totalCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
+var typeorm_2 = require("typeorm");
 // Show stats from coupons like, total coupons, coupons asigned, coupons that are not asigned, coupons created in a day and coupons asigned in a day
 var totalCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var result, count, _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var result, _a, _b, _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
                 result = {
                     totalCoupons: 0,
@@ -52,26 +53,30 @@ var totalCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0
                     couponsCreatedPerDay: 0,
                     couponsAsignedPerDay: 0
                 };
+                _a = result;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).createQueryBuilder("coupon")
                         .where("coupon.code IS NOT NULL")
                         .getCount()];
             case 1:
-                count = _c.sent();
-                result.totalCoupons = count;
-                _a = result;
+                _a.totalCoupons = _e.sent();
+                _b = result;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).createQueryBuilder("coupon")
                         .where("coupon.code IS NOT NULL")
                         .andWhere("coupon.customer_email IS NOT NULL")
                         .getCount()];
             case 2:
-                _a.couponsAsigned = _c.sent();
-                _b = result;
+                _b.couponsAsigned = _e.sent();
+                _c = result;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).createQueryBuilder("coupon")
                         .where("coupon.code IS NOT NULL")
                         .andWhere("coupon.customer_email IS NULL")
                         .getCount()];
             case 3:
-                _b.couponsNotAsigned = _c.sent();
+                _c.couponsNotAsigned = _e.sent();
+                _d = result;
+                return [4 /*yield*/, typeorm_2.getManager().query("SELECT SUM(1) total, to_char(DATE(assigned_at), 'DD-MM-YYYY') assigned_at FROM coupons WHERE assigned_at IS NOT NULL  GROUP BY date(assigned_at) ORDER BY DATE(assigned_at) DESC LIMIT 31;")];
+            case 4:
+                _d.couponsAsignedPerDay = _e.sent();
                 return [2 /*return*/, res.status(200).json(result)];
         }
     });
