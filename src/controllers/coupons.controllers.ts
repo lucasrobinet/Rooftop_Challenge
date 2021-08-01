@@ -1,9 +1,9 @@
 import {Request, Response} from 'express'
-import { send } from 'process';
 import {Code, createQueryBuilder, getRepository, Timestamp, getConnection} from "typeorm"
 import {Coupons} from '../entity/Coupons'
 import Joi from 'joi';
-import { networkInterfaces } from 'os';
+import faker from 'faker'
+
 
 
 // Show a coupon if are asigned to an email
@@ -75,7 +75,3 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
     return res.status(201).send("Coupon deleted!");
 
 }
-
-/*         coupon.customer_email = email
-        await getRepository(Coupons).save(coupon)
-        res.status(201).send("Coupon asigned successfully!") */

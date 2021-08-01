@@ -34,6 +34,10 @@ var Coupons = /** @class */ (function () {
         typeorm_1.Column(),
         __metadata("design:type", String)
     ], Coupons.prototype, "customer_email", void 0);
+    __decorate([
+        typeorm_1.Column({ type: "time without time zone" }),
+        __metadata("design:type", Date)
+    ], Coupons.prototype, "created_at", void 0);
     Coupons = __decorate([
         typeorm_1.Entity()
     ], Coupons);

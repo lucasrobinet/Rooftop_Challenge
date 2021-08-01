@@ -18,4 +18,7 @@ export class Coupons {
     @Column()
     customer_email: string;
 
+    @Column({type: "time without time zone"})
+    created_at: Date;
+
 }

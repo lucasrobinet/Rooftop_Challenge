@@ -39,10 +39,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCoupon = exports.asignCoupon = exports.createCoupon = exports.getCoupons = void 0;
+exports.xd = exports.deleteCoupon = exports.asignCoupon = exports.createCoupon = exports.getCoupons = void 0;
 var typeorm_1 = require("typeorm");
 var Coupons_1 = require("../entity/Coupons");
 var joi_1 = __importDefault(require("joi"));
+var faker_1 = __importDefault(require("faker"));
 // Show a coupon if are asigned to an email
 var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var code, email, coupon;
@@ -151,6 +152,22 @@ var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.deleteCoupon = deleteCoupon;
-/*         coupon.customer_email = email
-        await getRepository(Coupons).save(coupon)
-        res.status(201).send("Coupon asigned successfully!") */ 
+function xd() {
+    return __awaiter(this, void 0, void 0, function () {
+        var coupon, _i, coupon_1, c;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).find()];
+                case 1:
+                    coupon = _a.sent();
+                    for (_i = 0, coupon_1 = coupon; _i < coupon_1.length; _i++) {
+                        c = coupon_1[_i];
+                        c.created_at = faker_1.default.date.past();
+                        typeorm_1.getRepository(Coupons_1.Coupons).save(c);
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.xd = xd;

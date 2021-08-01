@@ -30,12 +30,13 @@ export const totalCoupons = async (req:Request, res:Response): Promise<Response>
     .andWhere("coupon.customer_email IS NULL")
     .getCount();
 
-    result.couponsAsignedPerDay = await getManager().query("SELECT SUM(1) total, to_char(DATE(assigned_at), 'DD-MM-YYYY') assigned_at FROM coupons WHERE assigned_at IS NOT NULL  GROUP BY date(assigned_at) ORDER BY DATE(assigned_at) DESC LIMIT 31;");
+    result.couponsAsignedPerDay = await getManager()
+    .query("SELECT SUM(1) total, to_char(DATE(assigned_at), 'DD-MM-YYYY') assigned_at FROM coupons WHERE assigned_at IS NOT NULL  GROUP BY date(assigned_at) ORDER BY DATE(assigned_at) DESC LIMIT 31;");
     
-    
+    result.couponsCreatedPerDay = await getManager()
+    .query("SELECT SUM(1) total, to_char(DATE(created_at), 'DD-MM-YYYY') created_at FROM coupons WHERE created_at IS NOT NULL  GROUP BY date(created_at) ORDER BY DATE(created_at) DESC LIMIT 31;")
     
 
     return res.status(200).json(result)
     
 }
-

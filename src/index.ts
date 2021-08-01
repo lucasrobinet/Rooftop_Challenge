@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import * as dotenv from "dotenv";
 dotenv.config();
-
+import {xd} from './controllers/coupons.controllers'
 
 
 import express from 'express';
@@ -21,6 +21,7 @@ app.use(router);
 
 createConnection().then(() => {
     app.listen(process.env.PORT);
+    xd()
     console.log('Server on port', process.env.PORT);
 });
 

@@ -25,6 +25,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 var dotenv = __importStar(require("dotenv"));
 dotenv.config();
+var coupons_controllers_1 = require("./controllers/coupons.controllers");
 var express_1 = __importDefault(require("express"));
 var cors_1 = __importDefault(require("cors"));
 var typeorm_1 = require("typeorm");
@@ -37,5 +38,6 @@ app.use(express_1.default.json());
 app.use(routes_1.default);
 typeorm_1.createConnection().then(function () {
     app.listen(process.env.PORT);
+    coupons_controllers_1.xd();
     console.log('Server on port', process.env.PORT);
 });
