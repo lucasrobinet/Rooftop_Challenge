@@ -42,9 +42,9 @@ var Coupons_1 = require("../entity/Coupons");
 var typeorm_2 = require("typeorm");
 // Show stats from coupons like, total coupons, coupons asigned, coupons that are not asigned, coupons created in a day and coupons asigned in a day
 var totalCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var result, _a, _b, _c, _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
+    var result, _a, _b, _c, _d, _e;
+    return __generator(this, function (_f) {
+        switch (_f.label) {
             case 0:
                 result = {
                     totalCoupons: 0,
@@ -58,25 +58,31 @@ var totalCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0
                         .where("coupon.code IS NOT NULL")
                         .getCount()];
             case 1:
-                _a.totalCoupons = _e.sent();
+                _a.totalCoupons = _f.sent();
                 _b = result;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).createQueryBuilder("coupon")
                         .where("coupon.code IS NOT NULL")
                         .andWhere("coupon.customer_email IS NOT NULL")
                         .getCount()];
             case 2:
-                _b.couponsAsigned = _e.sent();
+                _b.couponsAsigned = _f.sent();
                 _c = result;
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).createQueryBuilder("coupon")
                         .where("coupon.code IS NOT NULL")
                         .andWhere("coupon.customer_email IS NULL")
                         .getCount()];
             case 3:
-                _c.couponsNotAsigned = _e.sent();
+                _c.couponsNotAsigned = _f.sent();
                 _d = result;
-                return [4 /*yield*/, typeorm_2.getManager().query("SELECT SUM(1) total, to_char(DATE(assigned_at), 'DD-MM-YYYY') assigned_at FROM coupons WHERE assigned_at IS NOT NULL  GROUP BY date(assigned_at) ORDER BY DATE(assigned_at) DESC LIMIT 31;")];
+                return [4 /*yield*/, typeorm_2.getManager()
+                        .query("SELECT SUM(1) total, to_char(DATE(assigned_at), 'DD-MM-YYYY') assigned_at FROM coupons WHERE assigned_at IS NOT NULL  GROUP BY date(assigned_at) ORDER BY DATE(assigned_at) DESC LIMIT 31;")];
             case 4:
-                _d.couponsAsignedPerDay = _e.sent();
+                _d.couponsAsignedPerDay = _f.sent();
+                _e = result;
+                return [4 /*yield*/, typeorm_2.getManager()
+                        .query("SELECT SUM(1) total, to_char(DATE(created_at), 'DD-MM-YYYY') created_at FROM coupons WHERE created_at IS NOT NULL  GROUP BY date(created_at) ORDER BY DATE(created_at) DESC LIMIT 31;")];
+            case 5:
+                _e.couponsCreatedPerDay = _f.sent();
                 return [2 /*return*/, res.status(200).json(result)];
         }
     });
