@@ -1,10 +1,10 @@
 import {Request, Response} from 'express'
-import {Code, getRepository} from "typeorm" 
+import {Code, getRepository, getTreeRepository} from "typeorm" 
 import {Stores} from '../entity/Stores'
 import {ILike} from "typeorm";
 
 
-// Show a list of 10 stores, and allow search by name
+// Show a list of 10 stores. Search by name allowed using "name" instead of "page" 
 export const getStores = async (req:Request, res: Response): Promise<void> => {  
 
     const name:string = (req.query.name as string);
@@ -25,12 +25,13 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
 
 
 // Create a new store
-export const newStore = async (req:Request, res:Response): Promise<Response> => {
+export const newStore = async (req:Request, res:Response): Promise<Response> => {  
 
     const name = req.body.name;
     const address = req.body.address;
+    const stores = await getRepository(Stores).findOne({name, address})
     if (name.length <= 0 || address.length <= 0) return res.status(404).send("Invalid Name or Addres");
-
+    if (stores) return res.status(404).send("Store existent")
     await getRepository(Stores).save(req.body)
     return res.status(201).send("Store created successfully!")
 

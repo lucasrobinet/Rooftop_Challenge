@@ -2,20 +2,30 @@ import {Request, Response} from 'express'
 import {Code, createQueryBuilder, getRepository, Timestamp, getConnection} from "typeorm"
 import {Coupons} from '../entity/Coupons'
 import Joi from 'joi';
-import faker from 'faker'
 
 
 
-// Show a coupon if are asigned to an email
-export const getCoupons = async (req:Request, res: Response): Promise<void> => {
+// Show if a coupon are asigned to an email and show the email (ONLY CODE REQUIRED)
+export const getCoupons = async (req:Request, res: Response): Promise<Response> => {
+
+    const code:string = (req.query.code as string);
+    const coupon = await getRepository(Coupons).findOne({code: code});
+    if(coupon == undefined) return res.status(404).send("Code Invalid");
+    if(coupon != undefined && coupon.customer_email == null) return res.status(200).send("Coupon avalaible");
+    return res.status(404).send("Coupon assigned  to: " + coupon.customer_email)
+};
+
+
+// Show if a coupon are asigned to an email
+export const getCoupons2 = async (req:Request, res: Response): Promise<void> => {
 
     const code:string = (req.query.code as string);
     const email:string = (req.query.email as string); 
-    const coupon = await getRepository(Coupons).find({code , customer_email: email });  
+    const coupon = await getRepository(Coupons).find({code, customer_email: email});
     if(coupon.length > 0 ) {
-        res.status(200).send("Email not available")
+        res.status(200).send("Coupon assigned")
     } else {
-        res.status(404).send("Email available")
+        res.status(404).send("Coupon not assigned or invalid coupon")
     }
 };
 
@@ -31,7 +41,7 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
         const newCoupon = new Coupons()
         newCoupon.code =  codeCoupon
         newCoupon.expires_at = req.body.expires_at
-        let coupon = await getRepository(Coupons).save(newCoupon)
+        let coupon = await getRepository(Coupons).save(newCoupon)  // se puede borrar el let coupon (PROBAR)
         res.status(201).send("Created coupon successfully!")
     }
 
@@ -39,26 +49,24 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
 
 
 // Asign a coupon to an email
- export const asignCoupon = async (req:Request, res:Response): Promise<void> => {
+ export const asignCoupon = async (req:Request, res:Response): Promise<Response> => {
 
     const email = req.body.customer_email;
     const code = req.body.code;
     const emailCoupon = await getRepository(Coupons).find({customer_email: email }); 
     const coupon = await getRepository(Coupons).findOne({code}); 
     const validation = Joi.string().email().required().validate(req.body.customer_email);
-    if (validation.error){
-        res.status(422).send("Invalid email")
-    }
-    else if (emailCoupon.length >= 1) {
-        res.status(422).send("This email already has a coupon assigned")
-    }  else if(coupon != null){
-        coupon.customer_email = email
-        coupon.assigned_at = new Date()
-        await getRepository(Coupons).save(coupon)
-        res.status(201).send("Coupon asigned successfully!")
-    } else {
-        res.status(422).send("Code not found")
-    }
+    
+    if (validation.error) return res.status(422).send("Invalid Email")
+    if (code.length != 8 ) return res.status(422).send("Invalid Code")
+    if (emailCoupon.length >= 1) return res.status(422).send("This email already has a coupon assigned")  // intentar eliminar algunos else if
+    if (coupon == null) return res.status(422).send("Code not found")
+    
+    coupon.customer_email = email
+    coupon.assigned_at = new Date()
+    await getRepository(Coupons).save(coupon)
+    return res.status(201).send("Coupon asigned successfully!")
+    
  }
 
 
