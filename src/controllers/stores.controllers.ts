@@ -12,6 +12,7 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
     if(name != null) {
         where.name = ILike(`${name}%`)
     }
+    console.log(where)
     const page:number = (parseInt(req.query.page as any) || 1)
     const limit = 10
     const total = await getRepository(Stores).count()
