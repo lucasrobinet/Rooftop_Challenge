@@ -35,7 +35,7 @@ export const getCoupons2 = async (req:Request, res: Response): Promise<Response>
     })
         return res.status(200).json({total,coupons})
     }
-    if(!code || !email) return res.status(404).send("Invalid Code or Email")
+    if(!code || !email || code.length != 8) return res.status(404).send("Invalid Code or Email")
     if(coupon.length <= 0) return res.status(404).send("Coupon not assigned or Invalid Email")
     return res.status(200).json(coupon)   
     

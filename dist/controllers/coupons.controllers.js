@@ -90,7 +90,7 @@ var getCoupons2 = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 coupons = _a.sent();
                 return [2 /*return*/, res.status(200).json({ total: total, coupons: coupons })];
             case 4:
-                if (!code || !email)
+                if (!code || !email || code.length != 8)
                     return [2 /*return*/, res.status(404).send("Invalid Code or Email")];
                 if (coupon.length <= 0)
                     return [2 /*return*/, res.status(404).send("Coupon not assigned or Invalid Email")];
