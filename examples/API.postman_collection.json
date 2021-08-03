@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "f82ac580-0a1c-447a-9e2e-e9ae84dd7a6f",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Check if coupon is assigned",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/coupons?code=F4HPVGGP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"coupons"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "F4HPVGGP"
+						}
+					]
+				},
+				"description": "Show if a coupon are asigned to an email and show the email (ONLY CODE REQUIRED)"
+			},
+			"response": []
+		},
+		{
+			"name": "Check if coupon is asigned",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/coupons2?code=F4HPVGGP&&email=hizo@fo.sd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"coupons2"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "F4HPVGGP"
+						},
+						{
+							"key": null,
+							"value": null
+						},
+						{
+							"key": "email",
+							"value": "hizo@fo.sd"
+						}
+					]
+				},
+				"description": "Show if a coupon are asigned to an email and show the email"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new coupon",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"TEST1111\",\r\n    \"expires_at\": \"2021-10-25 21:43\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/coupons/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"coupons",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign a coupon to an email",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"TZOL4BLA\",\r\n    \"customer_email\": \"robinet@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/coupons",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"coupons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a coupon by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/coupons/555",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"coupons",
+						"555"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show the stores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/stores?name=ac",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stores"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ac"
+						}
+					]
+				},
+				"description": "can search a store by name"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ttest name 2\",\r\n    \"address\": \"adderess test 2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/stores",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a store ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/stores/505",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stores",
+						"505"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stats of coupons",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"stats"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
