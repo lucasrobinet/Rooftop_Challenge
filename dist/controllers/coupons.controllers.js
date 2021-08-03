@@ -122,7 +122,9 @@ var createCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
                 ;
                 res.status(201).send("Created coupon successfully!");
                 _a.label = 4;
-            case 4: return [2 /*return*/];
+            case 4:
+                ;
+                return [2 /*return*/];
         }
     });
 }); };
@@ -180,20 +182,3 @@ var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.deleteCoupon = deleteCoupon;
-/*
- if (code == null && email == null) {
-    const total = await getRepository(Coupons).count()
-    const page:number = (parseInt(req.query.page as any) || 1)
-    const limit = 10;
-    const coupons = await getRepository(Coupons).find({
-    skip: (page - 1) * limit,
-    take: limit
-    })
-    return res.status(200).json({total,coupons})
-    }
-
-
-    if(coupon.length > 0) return res.status(200).send("Coupon assigned")
-    if(!email || !code) return res.status(404).send("Invalid Code or Email")
-    return res.status(404).send("Coupon not assigned or invalid coupon")
-    */ 

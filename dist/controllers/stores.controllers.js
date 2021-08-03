@@ -51,7 +51,6 @@ var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 if (name != null) {
                     where.name = typeorm_2.ILike(name + "%");
                 }
-                console.log(where);
                 page = (parseInt(req.query.page) || 1);
                 limit = 10;
                 return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).count()];

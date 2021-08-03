@@ -55,9 +55,9 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
         newCoupon.expires_at = req.body.expires_at
         let coupon = await getRepository(Coupons).save(newCoupon)  // se puede borrar el let coupon (PROBAR)
         res.status(201).send("Created coupon successfully!")
-    }
+    };
 
- }
+ };
 
 
 // Asign a coupon to an email
@@ -79,7 +79,7 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
     await getRepository(Coupons).save(coupon)
     return res.status(201).send("Coupon asigned successfully!")
     
- }
+ };
 
 
 // Delete a coupon by id
@@ -94,23 +94,4 @@ export const createCoupon = async (req:Request, res:Response): Promise<void> => 
     await getRepository(Coupons).delete(req.params.id);
     return res.status(201).send("Coupon deleted!");
 
-}
-
-
-/* 
- if (code == null && email == null) {
-    const total = await getRepository(Coupons).count()
-    const page:number = (parseInt(req.query.page as any) || 1)
-    const limit = 10;
-    const coupons = await getRepository(Coupons).find({
-    skip: (page - 1) * limit,
-    take: limit
-    })
-    return res.status(200).json({total,coupons})
-    } 
-
-
-    if(coupon.length > 0) return res.status(200).send("Coupon assigned")
-    if(!email || !code) return res.status(404).send("Invalid Code or Email")
-    return res.status(404).send("Coupon not assigned or invalid coupon")
-    */
+};

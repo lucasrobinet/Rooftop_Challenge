@@ -12,7 +12,6 @@ export const getStores = async (req:Request, res: Response): Promise<void> => {
     if(name != null) {
         where.name = ILike(`${name}%`)
     }
-    console.log(where)
     const page:number = (parseInt(req.query.page as any) || 1)
     const limit = 10
     const total = await getRepository(Stores).count()
@@ -36,7 +35,7 @@ export const newStore = async (req:Request, res:Response): Promise<Response> => 
     await getRepository(Stores).save(req.body)
     return res.status(201).send("Store created successfully!")
 
- }
+ };
 
 
 // Delete a store
@@ -49,5 +48,5 @@ export const newStore = async (req:Request, res:Response): Promise<Response> => 
     await getRepository(Stores).delete(req.params.id);
     return res.status(200).send("Store deleted!");
 
-}
+};
 
