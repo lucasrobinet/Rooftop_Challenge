@@ -20,7 +20,7 @@ Rest Api to manage coupons from stores.
 
   
 
-### Test/Documentation:
+## Test/Documentation:
 
 ---
 
@@ -30,11 +30,11 @@ Rest Api to manage coupons from stores.
 
 ---
 
-### To run: 
+## To run: 
 
 ```  npm run dev ``` 
 
-### Set the required environment variables in a .env file:
+## Set the required environment variables in a .env file:
 
 ``` 
 TYPEORM_CONECTION = <conection-type>
