@@ -40,7 +40,7 @@ exports.deleteStore = exports.newStore = exports.getStores = void 0;
 var typeorm_1 = require("typeorm");
 var Stores_1 = require("../entity/Stores");
 var typeorm_2 = require("typeorm");
-// Show a list of 10 stores, and allow search by name
+// Show a list of 10 stores. Search by name allowed using "name" instead of "page" 
 var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var name, where, page, limit, total, stores;
     return __generator(this, function (_a) {
@@ -71,16 +71,21 @@ var getStores = function (req, res) { return __awaiter(void 0, void 0, void 0, f
 exports.getStores = getStores;
 // Create a new store
 var newStore = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var name, address;
+    var name, address, stores;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 name = req.body.name;
                 address = req.body.address;
+                return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).findOne({ name: name, address: address })];
+            case 1:
+                stores = _a.sent();
                 if (name.length <= 0 || address.length <= 0)
                     return [2 /*return*/, res.status(404).send("Invalid Name or Addres")];
+                if (stores)
+                    return [2 /*return*/, res.status(404).send("Store existent")];
                 return [4 /*yield*/, typeorm_1.getRepository(Stores_1.Stores).save(req.body)];
-            case 1:
+            case 2:
                 _a.sent();
                 return [2 /*return*/, res.status(201).send("Store created successfully!")];
         }
