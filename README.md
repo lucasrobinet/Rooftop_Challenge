@@ -5,7 +5,6 @@ Rest Api to manage coupons from stores.
 
 ## Technologies 
 
----
 
 - Node.js 
 
@@ -21,19 +20,17 @@ Rest Api to manage coupons from stores.
 
 ## Test/Documentation:
 
----
 
 - https://documenter.getpostman.com/view/15803839/TzsfoRpY 
 
 ## Configuration/Deployment 
 
----
 
-## To run: 
+### To run: 
 
 ```  npm run dev ``` 
 
-## Set the required environment variables in a .env file:
+### Set the required environment variables in a .env file:
 
 ``` 
 TYPEORM_CONECTION = <conection-type>
@@ -50,7 +47,6 @@ PORT= <port>
 
 ## Links
 
----
 
 - Structure and functions of typeorm : typeorm.io
 - Email validation using joi : https://joi.dev/api/?v=17.4.1
