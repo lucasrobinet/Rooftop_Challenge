@@ -1,6 +1,5 @@
 # Rooftop Academy - Challenge Backend
 
----
 
 Rest Api to manage coupons from stores. 
 
