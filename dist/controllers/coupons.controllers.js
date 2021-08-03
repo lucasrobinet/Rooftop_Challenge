@@ -64,7 +64,7 @@ var getCoupons = function (req, res) { return __awaiter(void 0, void 0, void 0, 
 exports.getCoupons = getCoupons;
 // Show if a coupon are asigned to an email
 var getCoupons2 = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var code, email, coupon;
+    var code, email, coupon, total, page, limit, coupons;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -73,13 +73,28 @@ var getCoupons2 = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).find({ code: code, customer_email: email })];
             case 1:
                 coupon = _a.sent();
-                if (coupon.length > 0) {
-                    res.status(200).send("Coupon assigned");
-                }
-                else {
-                    res.status(404).send("Coupon not assigned or invalid coupon");
-                }
-                return [2 /*return*/];
+                if (!(!code && !email)) return [3 /*break*/, 4];
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).count()];
+            case 2:
+                total = _a.sent();
+                page = (parseInt(req.query.page) || 1);
+                limit = 10;
+                return [4 /*yield*/, typeorm_1.getRepository(Coupons_1.Coupons).find({
+                        order: {
+                            id: "ASC"
+                        },
+                        skip: (page - 1) * limit,
+                        take: limit
+                    })];
+            case 3:
+                coupons = _a.sent();
+                return [2 /*return*/, res.status(200).json({ total: total, coupons: coupons })];
+            case 4:
+                if (!code || !email)
+                    return [2 /*return*/, res.status(404).send("Invalid Code or Email")];
+                if (coupon.length <= 0)
+                    return [2 /*return*/, res.status(404).send("Coupon not assigned or Invalid Email")];
+                return [2 /*return*/, res.status(200).json(coupon)];
         }
     });
 }); };
@@ -132,7 +147,7 @@ var asignCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 if (code.length != 8)
                     return [2 /*return*/, res.status(422).send("Invalid Code")];
                 if (emailCoupon.length >= 1)
-                    return [2 /*return*/, res.status(422).send("This email already has a coupon assigned")]; // intentar eliminar algunos else if
+                    return [2 /*return*/, res.status(422).send("This email already has a coupon assigned")];
                 if (coupon == null)
                     return [2 /*return*/, res.status(422).send("Code not found")];
                 coupon.customer_email = email;
@@ -165,3 +180,20 @@ var deleteCoupon = function (req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.deleteCoupon = deleteCoupon;
+/*
+ if (code == null && email == null) {
+    const total = await getRepository(Coupons).count()
+    const page:number = (parseInt(req.query.page as any) || 1)
+    const limit = 10;
+    const coupons = await getRepository(Coupons).find({
+    skip: (page - 1) * limit,
+    take: limit
+    })
+    return res.status(200).json({total,coupons})
+    }
+
+
+    if(coupon.length > 0) return res.status(200).send("Coupon assigned")
+    if(!email || !code) return res.status(404).send("Invalid Code or Email")
+    return res.status(404).send("Coupon not assigned or invalid coupon")
+    */ 
