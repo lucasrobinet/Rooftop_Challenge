@@ -35,5 +35,4 @@ app.use(express_1.default.json());
 app.use(routes_1.default);
 typeorm_1.createConnection().then(function () {
     app.listen(process.env.PORT);
-    console.log('Server on port', process.env.PORT);
 });
