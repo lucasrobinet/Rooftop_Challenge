@@ -25,7 +25,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("reflect-metadata");
 var dotenv = __importStar(require("dotenv"));
 dotenv.config();
-//import {xd} from './controllers/coupons.controllers'
 var express_1 = __importDefault(require("express"));
 var typeorm_1 = require("typeorm");
 var routes_1 = __importDefault(require("./routes/routes"));

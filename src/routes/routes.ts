@@ -1,7 +1,7 @@
 import { Router } from "express";
 const router = Router();
 
-import {getCoupons, createCoupon, asignCoupon, deleteCoupon} from "../controllers/coupons.controllers";
+import {getCoupons, createCoupon, asignCoupon, deleteCoupon, getCoupons2} from "../controllers/coupons.controllers";
 
 import { getStores, newStore, deleteStore } from "../controllers/stores.controllers"
 
@@ -9,6 +9,8 @@ import {totalCoupons } from "../controllers/stats.controllers"
 
 
 // Coupons
+router.get("/coupons2", getCoupons2)
+
 router.get("/coupons", getCoupons);
 
 router.post("/coupons", createCoupon);

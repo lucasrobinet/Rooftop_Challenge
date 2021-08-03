@@ -6,6 +6,5 @@
     "password": "TYPEORM_PASSWORD",
     "database": "TYPEORM_DATABASE",
     "entities": "TYPEORM_ENTITIES",
-    "logging": true,
     "synchronize": "TYPEORM_SYNCHRONIZE"
  }
